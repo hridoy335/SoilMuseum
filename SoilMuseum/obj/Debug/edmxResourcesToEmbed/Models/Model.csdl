@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SoilMuseumModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Accrss_Mathod">
+    <Key>
+      <PropertyRef Name="Access_Method_ID" />
+    </Key>
+    <Property Name="Access_Method_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Mathod_Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IP_Address" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Makedate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+  </EntityType>
+  <EntityType Name="Division">
+    <Key>
+      <PropertyRef Name="Division_ID" />
+    </Key>
+    <Property Name="Division_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Division_Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Zilas" Relationship="Self.FK_Zila_Division" FromRole="Division" ToRole="Zila" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Employee_ID" />
+    </Key>
+    <Property Name="Employee_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Employee_Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Employee_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="User_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="User_Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Soil_Discription" Relationship="Self.FK_Soil_Discription_Employee" FromRole="Employee" ToRole="Soil_Discription" />
+  </EntityType>
+  <EntityType Name="Soil_Discription">
+    <Key>
+      <PropertyRef Name="Soil_Discription_ID" />
+    </Key>
+    <Property Name="Soil_Discription_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Makedate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Employee_ID" Type="Int32" Nullable="false" />
+    <Property Name="Image_Path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Discription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Upozila_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Soil_Discription_Employee" FromRole="Soil_Discription" ToRole="Employee" />
+    <NavigationProperty Name="Upozila" Relationship="Self.FK_Soil_Discription_Upozila" FromRole="Soil_Discription" ToRole="Upozila" />
+  </EntityType>
+  <EntityType Name="Upozila">
+    <Key>
+      <PropertyRef Name="Upozila_ID" />
+    </Key>
+    <Property Name="Upozila_ID" Type="Int32" Nullable="false" />
+    <Property Name="Upozila_Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Zila_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Soil_Discription" Relationship="Self.FK_Soil_Discription_Upozila" FromRole="Upozila" ToRole="Soil_Discription" />
+    <NavigationProperty Name="Zila" Relationship="Self.FK_Upozila_Zila" FromRole="Upozila" ToRole="Zila" />
+  </EntityType>
+  <EntityType Name="Zila">
+    <Key>
+      <PropertyRef Name="Zila_ID" />
+    </Key>
+    <Property Name="Zila_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Zila_Name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Division_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Division" Relationship="Self.FK_Zila_Division" FromRole="Zila" ToRole="Division" />
+    <NavigationProperty Name="Upozilas" Relationship="Self.FK_Upozila_Zila" FromRole="Zila" ToRole="Upozila" />
+  </EntityType>
+  <Association Name="FK_Zila_Division">
+    <End Role="Division" Type="Self.Division" Multiplicity="1" />
+    <End Role="Zila" Type="Self.Zila" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Division">
+        <PropertyRef Name="Division_ID" />
+      </Principal>
+      <Dependent Role="Zila">
+        <PropertyRef Name="Division_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Soil_Discription_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Soil_Discription" Type="Self.Soil_Discription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Employee_ID" />
+      </Principal>
+      <Dependent Role="Soil_Discription">
+        <PropertyRef Name="Employee_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Soil_Discription_Upozila">
+    <End Role="Upozila" Type="Self.Upozila" Multiplicity="1" />
+    <End Role="Soil_Discription" Type="Self.Soil_Discription" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Upozila">
+        <PropertyRef Name="Upozila_ID" />
+      </Principal>
+      <Dependent Role="Soil_Discription">
+        <PropertyRef Name="Upozila_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Upozila_Zila">
+    <End Role="Zila" Type="Self.Zila" Multiplicity="1" />
+    <End Role="Upozila" Type="Self.Upozila" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Zila">
+        <PropertyRef Name="Zila_ID" />
+      </Principal>
+      <Dependent Role="Upozila">
+        <PropertyRef Name="Zila_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SoilMuseumEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accrss_Mathod" EntityType="Self.Accrss_Mathod" />
+    <EntitySet Name="Divisions" EntityType="Self.Division" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Soil_Discription" EntityType="Self.Soil_Discription" />
+    <EntitySet Name="Upozilas" EntityType="Self.Upozila" />
+    <EntitySet Name="Zilas" EntityType="Self.Zila" />
+    <AssociationSet Name="FK_Zila_Division" Association="Self.FK_Zila_Division">
+      <End Role="Division" EntitySet="Divisions" />
+      <End Role="Zila" EntitySet="Zilas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Soil_Discription_Employee" Association="Self.FK_Soil_Discription_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Soil_Discription" EntitySet="Soil_Discription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Soil_Discription_Upozila" Association="Self.FK_Soil_Discription_Upozila">
+      <End Role="Upozila" EntitySet="Upozilas" />
+      <End Role="Soil_Discription" EntitySet="Soil_Discription" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Upozila_Zila" Association="Self.FK_Upozila_Zila">
+      <End Role="Zila" EntitySet="Zilas" />
+      <End Role="Upozila" EntitySet="Upozilas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
