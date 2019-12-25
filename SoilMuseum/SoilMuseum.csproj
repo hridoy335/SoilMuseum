@@ -160,6 +160,11 @@
     <Compile Include="Models\Upozila.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Validation\Division.cs" />
+    <Compile Include="Models\Validation\Employee.cs" />
+    <Compile Include="Models\Validation\Soil_Discription.cs" />
+    <Compile Include="Models\Validation\Upozila.cs" />
+    <Compile Include="Models\Validation\Zila.cs" />
     <Compile Include="Models\Zila.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
