@@ -74,6 +74,20 @@ namespace SoilMuseum.Controllers
             return View(de);
             
         }
+        [HttpPost]
+        public ActionResult EployeeInfoUpddate([Bind(Include = "Employee_ID,Employee_Name,Employee_Email,Username,Password,User_type,User_Active")] Employee employee, int? Designation) 
+        {
+            
+            employee.User_type = Convert.ToInt32(Designation);
+                if (ModelState.IsValid)
+                {
+                    db.Entry(employee).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("EmployeeList");
+                }
+                return View(employee);
+         
+        }
 
         //Designation action
         [HttpGet]
@@ -85,7 +99,7 @@ namespace SoilMuseum.Controllers
         public ActionResult DesignationAdd([Bind(Include = "Employee_DID,Designation_Name")] Employee_Designation employee_Designation)
         {
 
-            var name = db.Employee_Designation.Where(x => x.Designation_Name == employee_Designation.Designation_Name);
+            var name = db.Employee_Designation.Where(x => x.Designation_Name == employee_Designation.Designation_Name).FirstOrDefault();
             if(name== null)
             {
                 if (ModelState.IsValid)
@@ -129,7 +143,7 @@ namespace SoilMuseum.Controllers
         [HttpPost]
         public ActionResult Designation_Update([Bind(Include = "Employee_DID,Designation_Name")] Employee_Designation employee_Designation)
         {
-            var name = db.Employee_Designation.Where(x => x.Designation_Name == employee_Designation.Designation_Name);
+            var name = db.Employee_Designation.Where(x => x.Designation_Name == employee_Designation.Designation_Name).FirstOrDefault();
             if (name == null)
             {
                 if (ModelState.IsValid)
