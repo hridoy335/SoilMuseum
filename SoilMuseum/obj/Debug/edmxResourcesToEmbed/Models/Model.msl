@@ -21,15 +21,15 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Employees">
-      <EntityTypeMapping TypeName="SoilMuseumModel.Employee">
+      <EntityTypeMapping TypeName="IsTypeOf(SoilMuseumModel.Employee)">
         <MappingFragment StoreEntitySet="Employee">
           <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
-          <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
-          <ScalarProperty Name="Employee_Email" ColumnName="Employee_Email" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="User_type" ColumnName="User_type" />
           <ScalarProperty Name="User_Active" ColumnName="User_Active" />
+          <ScalarProperty Name="User_type" ColumnName="User_type" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Employee_Email" ColumnName="Employee_Email" />
+          <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -60,6 +60,14 @@
           <ScalarProperty Name="Zila_ID" ColumnName="Zila_ID" />
           <ScalarProperty Name="Zila_Name" ColumnName="Zila_Name" />
           <ScalarProperty Name="Division_ID" ColumnName="Division_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee_Designation">
+      <EntityTypeMapping TypeName="IsTypeOf(SoilMuseumModel.Employee_Designation)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <MappingFragment StoreEntitySet="Employee_Designation">
+          <ScalarProperty Name="Employee_DID" ColumnName="Employee_DID" />
+          <ScalarProperty Name="Designation_Name" ColumnName="Designation_Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

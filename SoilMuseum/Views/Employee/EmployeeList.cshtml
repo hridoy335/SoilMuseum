@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SoilMuseum.Models.Employee>
+
+@{
+    ViewBag.Title = "EmployeeList";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h4>Employee List</h4>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_Designation.Designation_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee_Designation.Designation_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EployeeInfoUpddate", new { id=item.Employee_ID }) 
+            @*@Html.ActionLink("Details", "Details", new { id=item.Employee_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Employee_ID })*@
+        </td>
+    </tr>
+}
+
+</table>

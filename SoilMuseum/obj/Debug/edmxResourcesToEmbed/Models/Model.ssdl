@@ -26,8 +26,15 @@
     <Property Name="Employee_Email" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="User_type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="User_type" Type="int" Nullable="false" />
     <Property Name="User_Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee_Designation">
+    <Key>
+      <PropertyRef Name="Employee_DID" />
+    </Key>
+    <Property Name="Employee_DID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Designation_Name" Type="varchar" MaxLength="500" Nullable="false" />
   </EntityType>
   <EntityType Name="Soil_Discription">
     <Key>
@@ -56,6 +63,18 @@
     <Property Name="Zila_Name" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="Division_ID" Type="int" Nullable="false" />
   </EntityType>
+  <Association Name="FK_Employee_Employee_Designation">
+    <End Role="Employee_Designation" Type="Self.Employee_Designation" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee_Designation">
+        <PropertyRef Name="Employee_DID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="User_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Soil_Discription_Employee">
     <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
     <End Role="Soil_Discription" Type="Self.Soil_Discription" Multiplicity="*" />
@@ -108,9 +127,14 @@
     <EntitySet Name="Accrss_Mathod" EntityType="Self.Accrss_Mathod" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Division" EntityType="Self.Division" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee_Designation" EntityType="Self.Employee_Designation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Soil_Discription" EntityType="Self.Soil_Discription" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Upozila" EntityType="Self.Upozila" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Zila" EntityType="Self.Zila" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Employee_Employee_Designation" Association="Self.FK_Employee_Employee_Designation">
+      <End Role="Employee_Designation" EntitySet="Employee_Designation" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
     <AssociationSet Name="FK_Soil_Discription_Employee" Association="Self.FK_Soil_Discription_Employee">
       <End Role="Employee" EntitySet="Employee" />
       <End Role="Soil_Discription" EntitySet="Soil_Discription" />

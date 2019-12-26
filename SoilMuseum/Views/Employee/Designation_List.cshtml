@@ -1,0 +1,34 @@
+﻿@model IEnumerable<SoilMuseum.Models.Employee_Designation>
+
+@{
+    ViewBag.Title = "Designation_List";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h4>Designation List</h4>
+
+<p>
+    @Html.ActionLink("Create New", "DesignationAdd")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Designation_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Designation_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Designation_Update", new { id=item.Employee_DID }) 
+            @*@Html.ActionLink("Details", "Details", new { id=item.Employee_DID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Employee_DID })*@
+        </td>
+    </tr>
+}
+
+</table>

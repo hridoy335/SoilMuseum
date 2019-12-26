@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SoilMuseumModelStoreContainer" CdmEntityContainer="SoilMuseumEntities1">
+    <EntitySetMapping Name="Accrss_Mathod">
+      <EntityTypeMapping TypeName="SoilMuseumModel.Accrss_Mathod">
+        <MappingFragment StoreEntitySet="Accrss_Mathod">
+          <ScalarProperty Name="Access_Method_ID" ColumnName="Access_Method_ID" />
+          <ScalarProperty Name="Mathod_Name" ColumnName="Mathod_Name" />
+          <ScalarProperty Name="IP_Address" ColumnName="IP_Address" />
+          <ScalarProperty Name="Makedate" ColumnName="Makedate" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Divisions">
+      <EntityTypeMapping TypeName="SoilMuseumModel.Division">
+        <MappingFragment StoreEntitySet="Division">
+          <ScalarProperty Name="Division_ID" ColumnName="Division_ID" />
+          <ScalarProperty Name="Division_Name" ColumnName="Division_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="SoilMuseumModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+          <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+          <ScalarProperty Name="Employee_Email" ColumnName="Employee_Email" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="User_type" ColumnName="User_type" />
+          <ScalarProperty Name="User_Active" ColumnName="User_Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee_Designation">
+      <EntityTypeMapping TypeName="SoilMuseumModel.Employee_Designation">
+        <MappingFragment StoreEntitySet="Employee_Designation">
+          <ScalarProperty Name="Employee_DID" ColumnName="Employee_DID" />
+          <ScalarProperty Name="Designation_Name" ColumnName="Designation_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Soil_Discription">
+      <EntityTypeMapping TypeName="SoilMuseumModel.Soil_Discription">
+        <MappingFragment StoreEntitySet="Soil_Discription">
+          <ScalarProperty Name="Soil_Discription_ID" ColumnName="Soil_Discription_ID" />
+          <ScalarProperty Name="Makedate" ColumnName="Makedate" />
+          <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
+          <ScalarProperty Name="Image_Path" ColumnName="Image_Path" />
+          <ScalarProperty Name="Discription" ColumnName="Discription" />
+          <ScalarProperty Name="Upozila_ID" ColumnName="Upozila_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Upozilas">
+      <EntityTypeMapping TypeName="SoilMuseumModel.Upozila">
+        <MappingFragment StoreEntitySet="Upozila">
+          <ScalarProperty Name="Upozila_ID" ColumnName="Upozila_ID" />
+          <ScalarProperty Name="Upozila_Name" ColumnName="Upozila_Name" />
+          <ScalarProperty Name="Zila_Id" ColumnName="Zila_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Zilas">
+      <EntityTypeMapping TypeName="SoilMuseumModel.Zila">
+        <MappingFragment StoreEntitySet="Zila">
+          <ScalarProperty Name="Zila_ID" ColumnName="Zila_ID" />
+          <ScalarProperty Name="Zila_Name" ColumnName="Zila_Name" />
+          <ScalarProperty Name="Division_ID" ColumnName="Division_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

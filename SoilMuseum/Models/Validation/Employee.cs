@@ -14,6 +14,7 @@ namespace SoilMuseum.Models
     {
         [Display(Name = "Name")]
         [Required(ErrorMessage = "Insert Name.")]
+        [MaxLength(20, ErrorMessage = "Name can't be more than 20 characters")]
         public string Employee_Name { get; set; }
 
         [Display(Name = "Email")]
@@ -22,19 +23,21 @@ namespace SoilMuseum.Models
         public string Employee_Email { get; set; }
 
         [Display(Name = "Username")]
+        [MaxLength(20, ErrorMessage = "Username can't be more than 20 characters")]
         [Required(ErrorMessage = "Insert Username.")]
         public string Username { get; set; }
 
         [Display(Name = "Password")]
+        [MaxLength(20, ErrorMessage = "Password can't be more than 20 characters")]
         [Required(ErrorMessage = "Insert Password.")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "Active User")]
+        [Display(Name = "User Type")]
         [Required(ErrorMessage = "Insert Active User.")]
         public string User_type { get; set; }
 
-        [Display(Name = "")]
+        [Display(Name = "Active User")]
         [Required(ErrorMessage = "Insert Name.")]
         public bool User_Active { get; set; }
     }

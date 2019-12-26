@@ -27,9 +27,10 @@
     <Property Name="Employee_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="User_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="User_type" Type="String" Nullable="false" />
     <Property Name="User_Active" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Soil_Discription" Relationship="Self.FK_Soil_Discription_Employee" FromRole="Employee" ToRole="Soil_Discription" />
+    <NavigationProperty Name="Employee_Designation" Relationship="SoilMuseumModel.FK_Employee_Employee_Designation1" FromRole="Employee" ToRole="Employee_Designation" />
   </EntityType>
   <EntityType Name="Soil_Discription">
     <Key>
@@ -135,5 +136,26 @@
       <End Role="Zila" EntitySet="Zilas" />
       <End Role="Upozila" EntitySet="Upozilas" />
     </AssociationSet>
+    <EntitySet Name="Employee_Designation" EntityType="SoilMuseumModel.Employee_Designation" />
+    <AssociationSet Name="FK_Employee_Employee_Designation1" Association="SoilMuseumModel.FK_Employee_Employee_Designation1">
+      <End Role="Employee_Designation" EntitySet="Employee_Designation" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Employee_Designation">
+    <Property Name="Employee_DID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Designation_Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Employee_Employee_Designation1">
+    <End Type="SoilMuseumModel.Employee_Designation" Role="Employee_Designation" Multiplicity="1" />
+    <End Type="SoilMuseumModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee_Designation">
+        <PropertyRef Name="Employee_DID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="User_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

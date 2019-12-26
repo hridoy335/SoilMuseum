@@ -76,3 +76,5 @@ G:\Education\Asp.Net MVC Project\SoilMuseum\SoilMuseum\obj\Debug\SoilMuseum.dll
 G:\Education\Asp.Net MVC Project\SoilMuseum\SoilMuseum\obj\Debug\SoilMuseum.pdb
 G:\Education\Asp.Net MVC Project\SoilMuseum\SoilMuseum\bin\EntityFramework.dll
 G:\Education\Asp.Net MVC Project\SoilMuseum\SoilMuseum\bin\EntityFramework.xml
+G:\Education\Asp.Net MVC Project\SoilMuseum\SoilMuseum\bin\EntityFramework.SqlServer.dll
+G:\Education\Asp.Net MVC Project\SoilMuseum\SoilMuseum\bin\EntityFramework.SqlServer.xml
