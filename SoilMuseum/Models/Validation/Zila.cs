@@ -6,24 +6,17 @@ using System.Web;
 
 namespace SoilMuseum.Models
 {
-    [MetadataType(typeof(metadataAccrss_Mathod))]
-    public partial class Accrss_Mathod
+    [MetadataType(typeof(metadataZila))]
+    public partial class Zila
     {
     }
-
-    public class metadataAccrss_Mathod
+    public class metadataZila
     {
-        [Required(ErrorMessage = "Insert Method Name")]
-        [Display(Name = "Mathod Name")]
-        public string Mathod_Name { get; set; }
-        [Required(ErrorMessage = "Insert Ip Address")]
-        [Display(Name = "IP Address")]
-        public string IP_Address { get; set; }
-        [Required(ErrorMessage = "Insert Makedate")]
-        [Display(Name = "MakeDate")]
-        public System.DateTime Makedate { get; set; }
-        [Required(ErrorMessage = "Insert Time")]
-        [Display(Name = "Time")]
-        public System.TimeSpan Time { get; set; }
+        [Required(ErrorMessage ="Zila Name Required.")]
+        [Display(Name ="Zila Name")]
+        public string Zila_Name { get; set; }
+        [Display(Name = "Division Name")]
+        [Required(ErrorMessage ="Select Division Name.")]
+        public int Division_ID { get; set; }
     }
 }

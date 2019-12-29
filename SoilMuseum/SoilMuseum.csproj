@@ -390,6 +390,13 @@
     <Content Include="Views\Employee\EployeeInfoUpddate.cshtml" />
     <Content Include="Views\Address\Division.cshtml" />
     <Content Include="Views\Address\DivisionList.cshtml" />
+    <Content Include="Views\Address\DivisionUpdate.cshtml" />
+    <Content Include="Views\Address\Zilalist.cshtml" />
+    <Content Include="Views\Address\Zila.cshtml" />
+    <Content Include="Views\Address\ZilaUpdate.cshtml" />
+    <Content Include="Views\Address\UpozilaList.cshtml" />
+    <Content Include="Views\Address\Upozila.cshtml" />
+    <Content Include="Views\Address\UpozilaUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

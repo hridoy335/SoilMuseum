@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SoilMuseum.Models.Upozila>
+
+@{
+    ViewBag.Title = "UpozilaList";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h4>Upozila Inforlation List</h4>
+
+<p>
+    @Html.ActionLink("Create New", "Upozila")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Upozila_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zila.Zila_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Upozila_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zila.Zila_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "UpozilaUpdate", new { id=item.Upozila_ID }) 
+            @*@Html.ActionLink("Details", "Details", new { id=item.Upozila_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Upozila_ID })*@
+        </td>
+    </tr>
+}
+
+</table>
