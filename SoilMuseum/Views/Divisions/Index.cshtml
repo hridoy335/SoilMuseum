@@ -1,34 +1,91 @@
-﻿@model IEnumerable<SoilMuseum.Models.Division>
+﻿@*@model IEnumerable<SoilMuseum.Models.Division>
+
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Admin.cshtml";
+    }
+
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Division_Name)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Division_Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Division_ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Division_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Division_ID })
+            </td>
+        </tr>
+    }
+
+    </table>*@
+
+
+@model ClubMember.Models.MemberModel
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Admin.cshtml";
+    ViewBag.Title = "ContactForm";
 }
 
-<h2>Index</h2>
+<h2>ContactForm</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Division_Name)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Division_Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Division_ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Division_ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Division_ID })
-        </td>
-    </tr>
+@using (Html.BeginForm("ContactForm", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>MemberModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="ImageFile" required />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
 }
 
-</table>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

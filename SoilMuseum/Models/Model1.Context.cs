@@ -32,5 +32,6 @@ namespace SoilMuseum.Models
         public virtual DbSet<Soil_Discription> Soil_Discription { get; set; }
         public virtual DbSet<Upozila> Upozilas { get; set; }
         public virtual DbSet<Zila> Zilas { get; set; }
+        public virtual DbSet<Image_Table> Image_Table { get; set; }
     }
 }

@@ -41,6 +41,15 @@
           <Property Name="Employee_DID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Designation_Name" Type="varchar" MaxLength="500" Nullable="false" />
         </EntityType>
+        <EntityType Name="Image_Table">
+          <Key>
+            <PropertyRef Name="Image_ID" />
+          </Key>
+          <Property Name="Image_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image_Path" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Make_date" Type="date" Nullable="false" />
+          <Property Name="Update_Date" Type="date" />
+        </EntityType>
         <EntityType Name="Soil_Discription">
           <Key>
             <PropertyRef Name="Soil_Discription_ID" />
@@ -48,7 +57,7 @@
           <Property Name="Soil_Discription_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Makedate" Type="date" Nullable="false" />
           <Property Name="Employee_ID" Type="int" Nullable="false" />
-          <Property Name="Image_Path" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Image_Id" Type="int" Nullable="false" />
           <Property Name="Discription" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="Upozila_ID" Type="int" Nullable="false" />
         </EntityType>
@@ -89,6 +98,18 @@
             </Principal>
             <Dependent Role="Soil_Discription">
               <PropertyRef Name="Employee_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Soil_Discription_Image_Table">
+          <End Role="Image_Table" Type="Self.Image_Table" Multiplicity="1" />
+          <End Role="Soil_Discription" Type="Self.Soil_Discription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image_Table">
+              <PropertyRef Name="Image_ID" />
+            </Principal>
+            <Dependent Role="Soil_Discription">
+              <PropertyRef Name="Image_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -133,6 +154,7 @@
           <EntitySet Name="Division" EntityType="Self.Division" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee_Designation" EntityType="Self.Employee_Designation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Image_Table" EntityType="Self.Image_Table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Soil_Discription" EntityType="Self.Soil_Discription" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Upozila" EntityType="Self.Upozila" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Zila" EntityType="Self.Zila" Schema="dbo" store:Type="Tables" />
@@ -142,6 +164,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Soil_Discription_Employee" Association="Self.FK_Soil_Discription_Employee">
             <End Role="Employee" EntitySet="Employee" />
+            <End Role="Soil_Discription" EntitySet="Soil_Discription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Soil_Discription_Image_Table" Association="Self.FK_Soil_Discription_Image_Table">
+            <End Role="Image_Table" EntitySet="Image_Table" />
             <End Role="Soil_Discription" EntitySet="Soil_Discription" />
           </AssociationSet>
           <AssociationSet Name="FK_Soil_Discription_Upozila" Association="Self.FK_Soil_Discription_Upozila">
@@ -208,11 +234,12 @@
           <Property Name="Soil_Discription_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Makedate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Employee_ID" Type="Int32" Nullable="false" />
-          <Property Name="Image_Path" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Discription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Upozila_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_Soil_Discription_Employee" FromRole="Soil_Discription" ToRole="Employee" />
           <NavigationProperty Name="Upozila" Relationship="Self.FK_Soil_Discription_Upozila" FromRole="Soil_Discription" ToRole="Upozila" />
+          <Property Name="Image_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Image_Table" Relationship="SoilMuseumModel.FK_Soil_Discription_Image_Table" FromRole="Soil_Discription" ToRole="Image_Table" />
         </EntityType>
         <EntityType Name="Upozila">
           <Key>
@@ -322,7 +349,34 @@
             <End Role="Zila" EntitySet="Zilas" />
             <End Role="Upozila" EntitySet="Upozilas" />
           </AssociationSet>
+          <EntitySet Name="Image_Table" EntityType="SoilMuseumModel.Image_Table" />
+          <AssociationSet Name="FK_Soil_Discription_Image_Table" Association="SoilMuseumModel.FK_Soil_Discription_Image_Table">
+            <End Role="Image_Table" EntitySet="Image_Table" />
+            <End Role="Soil_Discription" EntitySet="Soil_Discription" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Image_Table">
+          <Key>
+            <PropertyRef Name="Image_ID" />
+          </Key>
+          <Property Name="Image_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image_Path" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Make_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Update_Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Soil_Discription" Relationship="SoilMuseumModel.FK_Soil_Discription_Image_Table" FromRole="Image_Table" ToRole="Soil_Discription" />
+        </EntityType>
+        <Association Name="FK_Soil_Discription_Image_Table">
+          <End Type="SoilMuseumModel.Image_Table" Role="Image_Table" Multiplicity="1" />
+          <End Type="SoilMuseumModel.Soil_Discription" Role="Soil_Discription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image_Table">
+              <PropertyRef Name="Image_ID" />
+            </Principal>
+            <Dependent Role="Soil_Discription">
+              <PropertyRef Name="Image_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -372,10 +426,10 @@
           <EntitySetMapping Name="Soil_Discription">
             <EntityTypeMapping TypeName="SoilMuseumModel.Soil_Discription">
               <MappingFragment StoreEntitySet="Soil_Discription">
+                <ScalarProperty Name="Image_Id" ColumnName="Image_Id" />
                 <ScalarProperty Name="Soil_Discription_ID" ColumnName="Soil_Discription_ID" />
                 <ScalarProperty Name="Makedate" ColumnName="Makedate" />
                 <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
-                <ScalarProperty Name="Image_Path" ColumnName="Image_Path" />
                 <ScalarProperty Name="Discription" ColumnName="Discription" />
                 <ScalarProperty Name="Upozila_ID" ColumnName="Upozila_ID" />
               </MappingFragment>
@@ -396,6 +450,16 @@
                 <ScalarProperty Name="Zila_ID" ColumnName="Zila_ID" />
                 <ScalarProperty Name="Zila_Name" ColumnName="Zila_Name" />
                 <ScalarProperty Name="Division_ID" ColumnName="Division_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Image_Table">
+            <EntityTypeMapping TypeName="SoilMuseumModel.Image_Table">
+              <MappingFragment StoreEntitySet="Image_Table">
+                <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+                <ScalarProperty Name="Make_date" ColumnName="Make_date" />
+                <ScalarProperty Name="Image_Path" ColumnName="Image_Path" />
+                <ScalarProperty Name="Image_ID" ColumnName="Image_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

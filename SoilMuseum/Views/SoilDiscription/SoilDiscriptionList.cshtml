@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SoilMuseum.Models.Soil_Discription>
+
+@{
+    ViewBag.Title = "SoilDiscriptionList";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<h2>SoilDiscriptionList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "SoilDiscription")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Makedate)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Discription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.Employee_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Upozila.Upozila_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image_Table.Image_Path)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Makedate)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Discription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.Employee_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Upozila.Upozila_Name)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.Image_Table.Image_Path)*@
+            <img src="@Url.Content(item.Image_Table.Image_Path)" alt="Image missing" width="100" height="100" />
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Soil_Discription_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Soil_Discription_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Soil_Discription_ID })
+        </td>
+    </tr>
+}
+
+</table>

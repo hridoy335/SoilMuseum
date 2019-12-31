@@ -11,17 +11,20 @@ namespace SoilMuseum.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Soil_Discription
     {
         public int Soil_Discription_ID { get; set; }
         public System.DateTime Makedate { get; set; }
         public int Employee_ID { get; set; }
-        public string Image_Path { get; set; }
         public string Discription { get; set; }
         public int Upozila_ID { get; set; }
-    
+        public int Image_Id { get; set; }
+        //public HttpPostedFile ImageFile { get; set; }
+
         public virtual Employee Employee { get; set; }
         public virtual Upozila Upozila { get; set; }
+        public virtual Image_Table Image_Table { get; set; }
     }
 }

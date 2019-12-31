@@ -44,10 +44,10 @@
     <EntitySetMapping Name="Soil_Discription">
       <EntityTypeMapping TypeName="SoilMuseumModel.Soil_Discription">
         <MappingFragment StoreEntitySet="Soil_Discription">
+          <ScalarProperty Name="Image_Id" ColumnName="Image_Id" />
           <ScalarProperty Name="Soil_Discription_ID" ColumnName="Soil_Discription_ID" />
           <ScalarProperty Name="Makedate" ColumnName="Makedate" />
           <ScalarProperty Name="Employee_ID" ColumnName="Employee_ID" />
-          <ScalarProperty Name="Image_Path" ColumnName="Image_Path" />
           <ScalarProperty Name="Discription" ColumnName="Discription" />
           <ScalarProperty Name="Upozila_ID" ColumnName="Upozila_ID" />
         </MappingFragment>
@@ -68,6 +68,16 @@
           <ScalarProperty Name="Zila_ID" ColumnName="Zila_ID" />
           <ScalarProperty Name="Zila_Name" ColumnName="Zila_Name" />
           <ScalarProperty Name="Division_ID" ColumnName="Division_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Image_Table">
+      <EntityTypeMapping TypeName="SoilMuseumModel.Image_Table">
+        <MappingFragment StoreEntitySet="Image_Table">
+          <ScalarProperty Name="Update_Date" ColumnName="Update_Date" />
+          <ScalarProperty Name="Make_date" ColumnName="Make_date" />
+          <ScalarProperty Name="Image_Path" ColumnName="Image_Path" />
+          <ScalarProperty Name="Image_ID" ColumnName="Image_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

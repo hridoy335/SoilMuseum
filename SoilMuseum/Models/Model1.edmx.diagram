@@ -17,6 +17,8 @@
         <AssociationConnector Association="SoilMuseumModel.FK_Soil_Discription_Employee" ManuallyRouted="false" />
         <AssociationConnector Association="SoilMuseumModel.FK_Soil_Discription_Upozila" ManuallyRouted="false" />
         <AssociationConnector Association="SoilMuseumModel.FK_Upozila_Zila" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SoilMuseumModel.Image_Table" Width="1.5" PointX="0.75" PointY="7.875" />
+        <AssociationConnector Association="SoilMuseumModel.FK_Soil_Discription_Image_Table" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

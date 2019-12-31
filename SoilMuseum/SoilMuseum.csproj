@@ -133,6 +133,7 @@
     <Compile Include="Controllers\DivisionsController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SoilDiscriptionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -146,6 +147,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Employee_Designation.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Image_Table.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
@@ -397,9 +401,12 @@
     <Content Include="Views\Address\UpozilaList.cshtml" />
     <Content Include="Views\Address\Upozila.cshtml" />
     <Content Include="Views\Address\UpozilaUpdate.cshtml" />
+    <Content Include="Views\SoilDiscription\SoilDiscriptionList.cshtml" />
+    <Content Include="Views\SoilDiscription\SoilDiscription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

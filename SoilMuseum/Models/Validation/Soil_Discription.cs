@@ -16,11 +16,13 @@ namespace SoilMuseum.Models
         [Display(Name = "MakeDate")]
         public System.DateTime Makedate { get; set; }
         public int Employee_ID { get; set; }
-        [Display(Name = "Image Path")]
-        [Required(ErrorMessage = "Insert Image")]
-        public string Image_Path { get; set; }
+        //[Display(Name = "Image Path")]
+        //[Required(ErrorMessage = "Insert Image")]
+        //public string Image_Path { get; set; }
         [Display(Name = "Discription")]
         [Required(ErrorMessage = "Insert Discription")]
         public string Discription { get; set; }
+
+        //public HttpPostedFile ImageFile { get; set; }
     }
 }
