@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CrystalDecisions.CrystalReports.Engine;
 using SoilMuseum.Models;
 
 namespace SoilMuseum.Controllers
@@ -157,6 +159,27 @@ namespace SoilMuseum.Controllers
 
             ViewBag.DesignationUpdate = "This name already here.";
             return View(employee_Designation);
+        }
+
+
+        public ActionResult EmployeeExport()
+        {
+            ReportDocument rd = new ReportDocument();
+            rd.Load(Path.Combine(Server.MapPath("~/Report"), "CrystalReport.rpt"));
+            rd.SetDataSource(db.Employees.ToList());
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0,SeekOrigin.Begin);
+                return File(stream, "application/pdf", "emp.pdf");
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }
